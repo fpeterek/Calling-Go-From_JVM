@@ -1,0 +1,9 @@
+
+export LD_LIBRARY_PATH=`pwd`
+
+gcc -fPIC test.c -shared -o libtest.so
+
+gcc -fPIC bridge.c ktinterface.c -shared -ltest gotest.so -o libint.so -I /usr/lib/jvm/java-14-openjdk/include/ -I /usr/lib/jvm/java-14-openjdk/include/linux -L .
+
+go build -o gotest.so -buildmode=c-shared gotest.go
+
